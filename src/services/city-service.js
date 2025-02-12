@@ -1,9 +1,13 @@
-const { City } = require('../models/index');
+const { CityRepository } = require('../repository/index');
 
-class CityRepository {
+class CityService {
+    constructor() {
+        this.cityRepository = new CityRepository(); // Instantiate the repository
+    }
+
     async createCity(name) {
         try {
-            const city = await City.create({ name });
+            const city = await this.cityRepository.createCity(name);
             return city;
         } catch (err) {
             console.error("Error creating city:", err);
@@ -13,8 +17,8 @@ class CityRepository {
 
     async deleteCity(cityId) {
         try {
-            const result = await City.destroy({ where: { id: cityId } });
-            return result ? { message: "City deleted successfully" } : { message: "City not found" };
+            const city = await this.cityRepository.deleteCity(cityId);
+            return city;
         } catch (err) {
             console.error("Error deleting city:", err);
             throw err;
@@ -23,7 +27,7 @@ class CityRepository {
 
     async getCity(cityId) {
         try {
-            const city = await City.findByPk(cityId);
+            const city = await this.cityRepository.getCity(cityId);
             return city;
         } catch (err) {
             console.error("Error fetching city:", err);
@@ -33,8 +37,8 @@ class CityRepository {
 
     async updateCity(cityId, name) {
         try {
-            const [updated] = await City.update({ name }, { where: { id: cityId } });
-            return updated ? { message: "City updated successfully" } : { message: "City not found" };
+            const city = await this.cityRepository.updateCity(cityId, name);
+            return city;
         } catch (err) {
             console.error("Error updating city:", err);
             throw err;
@@ -42,4 +46,4 @@ class CityRepository {
     }
 }
 
-module.exports = new CityRepository();
+module.exports = CityService; // Export the service for use in other parts of the app
