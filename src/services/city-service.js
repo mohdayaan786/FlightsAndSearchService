@@ -2,13 +2,20 @@ const { CityRepository } = require('../repository/index');
 
 class CityService {
     constructor() {
-        this.cityRepository = new CityRepository(); // Instantiate the repository
+        this.cityRepository = new CityRepository(); 
     }
 
-    async createCity(name) {
+    async createCity(data) {
         try {
-            const city = await this.cityRepository.createCity(name);
-            return city;
+            console.log("Received in CityService:", data); // Debugging
+
+            // Extract only the string value
+            if (!data || typeof data.name !== "string") {
+                throw new Error("Invalid city name: must be a string");
+            }
+
+            // Pass just the string to the repository
+            return await this.cityRepository.createCity(data.name);
         } catch (err) {
             console.error("Error creating city:", err);
             throw err;

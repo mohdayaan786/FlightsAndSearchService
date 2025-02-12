@@ -42,25 +42,41 @@ const destroy = async (req,res) => {
     }
 }
 
-const update = async (req,res) => {
-    try{
-        const response = await cityService.updateCity(req.params.id,req.body);
+const update = async (req, res) => {
+    try {
+        // Extract the name from req.body
+        const { name } = req.body;
+
+        // Validate that name is a string
+        if (!name || typeof name !== "string") {
+            return res.status(400).json({
+                data: {},
+                success: false,
+                message: "City name must be a valid string",
+                err: "Invalid input for city name",
+            });
+        }
+
+        // Call updateCity with the extracted name
+        const response = await cityService.updateCity(req.params.id, name);
+
         return res.status(200).json({
-         data : response,
-         success : true,
-         message : 'Succesfully updated a city',
-         err : {}
+            data: response,
+            success: true,
+            message: "Successfully updated the city",
+            err: {},
         });
-    } catch(error){
-        console.log(error);
+    } catch (error) {
+        console.error(error);
         return res.status(500).json({
-            data : {},
-            success : false,
-            message : 'Not able to update a city',
-            err : error
+            data: {},
+            success: false,
+            message: "Not able to update the city",
+            err: error.message,
         });
     }
 }
+
 
 const get = async (req,res) => {
     try{
