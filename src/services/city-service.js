@@ -52,9 +52,9 @@ class CityService {
         }
     }
 
-    async getAllCities() {
+    async getAllCities(filter) {
         try {
-            const cities = await this.cityRepository.getAllCities(); // Call the repository method
+            const cities = await this.cityRepository.getAllCities({name :filter.name}); // Call the repository method
             return cities;
         } catch (err) {
             console.error("Error fetching cities:", err);
