@@ -40,6 +40,16 @@ class CityRepository {
             throw err;
         }
     }
+    async getAllCities() {
+        try {
+            const cities = await City.findAll(); // Sequelize method to fetch all records
+            return cities;
+        } catch (err) {
+            console.error("Error fetching cities from DB:", err);
+            throw err;
+        }
+    }
+    
 }
 
 module.exports = CityRepository;

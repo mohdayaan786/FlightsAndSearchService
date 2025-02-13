@@ -51,6 +51,17 @@ class CityService {
             throw err;
         }
     }
+
+    async getAllCities() {
+        try {
+            const cities = await this.cityRepository.getAllCities(); // Call the repository method
+            return cities;
+        } catch (err) {
+            console.error("Error fetching cities:", err);
+            throw err;
+        }
+    }
+    
 }
 
 module.exports = CityService; // Export the service for use in other parts of the app
