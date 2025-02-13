@@ -1,7 +1,9 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
+
     await queryInterface.createTable('Airports', {
       id: {
         allowNull: false,
@@ -19,11 +21,11 @@ module.exports = {
       city_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        onDelete : 'CASCADE',
-        references : {
-          model : 'Cities',
-          key : 'id',
-          as : 'city_id'
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Cities',
+          key: 'id',
+          as: 'city_id'
         }
       },
       createdAt: {

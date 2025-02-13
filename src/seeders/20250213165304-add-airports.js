@@ -26,9 +26,9 @@ module.exports = {
       },
       {
         name: 'Birsa Munda International Airport',
-        city_id : 12,
-        createdAt : new Date(),
-        updatedAt : new Date()
+        city_id: 12,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },

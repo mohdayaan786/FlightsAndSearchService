@@ -2,7 +2,7 @@ const { CityRepository } = require('../repository/index');
 
 class CityService {
     constructor() {
-        this.cityRepository = new CityRepository(); 
+        this.cityRepository = new CityRepository();
     }
 
     async createCity(data) {
@@ -54,14 +54,14 @@ class CityService {
 
     async getAllCities(filter) {
         try {
-            const cities = await this.cityRepository.getAllCities({name :filter.name}); // Call the repository method
+            const cities = await this.cityRepository.getAllCities({ name: filter.name }); // Call the repository method
             return cities;
         } catch (err) {
             console.error("Error fetching cities:", err);
             throw err;
         }
     }
-    
+
 }
 
 module.exports = CityService; // Export the service for use in other parts of the app
