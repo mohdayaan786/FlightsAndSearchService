@@ -12,6 +12,15 @@ class CityRepository {
         }
     }
 
+    async createMultipleCities(cities) {
+        try {
+            const result = await City.bulkCreate(cities);
+            return result;
+        } catch (err) {
+            console.error("Error creating cities:", err);
+            throw err;
+        }
+    }
     async deleteCity(cityId) {
         try {
             const result = await City.destroy({ where: { id: cityId } });

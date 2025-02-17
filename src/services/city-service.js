@@ -21,7 +21,15 @@ class CityService {
             throw err;
         }
     }
-
+    async createMultipleCities(cities) {
+        try {
+            const result = await this.cityRepository.createMultipleCities(cities);
+            return result;
+        } catch (err) {
+            console.error("Error creating cities:", err);
+            throw err;
+        }
+    }
     async deleteCity(cityId) {
         try {
             const city = await this.cityRepository.deleteCity(cityId);
@@ -61,7 +69,6 @@ class CityService {
             throw err;
         }
     }
-
 }
 
 module.exports = CityService; // Export the service for use in other parts of the app
