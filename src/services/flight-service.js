@@ -23,6 +23,27 @@ class FlightService {
             throw err;
         }
     }
+
+    async getFlight(id) {
+        try {
+            const flight = await this.flightRepository.getFlight(id);
+            return flight;
+        } catch (err) {
+            console.error("Error getting flight by id:", err);
+            throw err;
+        }
+    }
+
+    async getAllFlights(data) {
+        try {
+            const flights = await this.flightRepository.getAllFlights(data);
+            return flights;
+        } catch (err) {
+            console.error("Error getting all flights:", err);
+            throw err;
+        }
+    }
+    
 }
 
 module.exports = FlightService;
