@@ -1,4 +1,4 @@
-const {AirportService} = require('../services/index2');
+const {AirportService} = require('../services/index');
 
 const airportService = new AirportService();
 

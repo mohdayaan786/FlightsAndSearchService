@@ -1,4 +1,4 @@
-const { AirportRepository } = require('../repository/index2');
+const { AirportRepository } = require('../repository/index');
 
 class AirportService {
     constructor() {
