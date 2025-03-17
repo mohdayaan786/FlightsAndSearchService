@@ -43,6 +43,16 @@ class FlightService {
             throw err;
         }
     }
+
+    async updateFlight(flightId,data){
+        try {
+            const reponse = await this.flightRepository.updateFlight(flightId,data);
+            return reponse;
+        } catch (err) {
+            console.error("Error at flight-Service:", err);
+            throw err;
+        }
+    }
     
 }
 

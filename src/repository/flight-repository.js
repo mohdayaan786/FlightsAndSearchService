@@ -54,6 +54,20 @@ class FlightRepository {
             throw err;
         }
     }
+
+    async updateFlight(flightId,data){
+        try{
+            await Flight.update(data,{
+                where : {
+                    id : flightId
+                }
+            });
+        }
+        catch(err){
+            console.error("Error updating the flights:", err);
+            throw err;
+        }
+    }
 }
 
 
