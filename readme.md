@@ -1,15 +1,34 @@
-# Welcome to flights Service
+# ✈️ Welcome to Flights Service
 
-## Project Setup
+This project provides a backend service for managing flights, including airplanes, airports, cities, and flight details.
 
- - clone the project on the local machine
- - Execute `npm install` on the same path as of root directory of the downloaded project.
- - Create a `.env` file in the root directory and add the following environment variable:
-    - `Port = 3000`
- - Inside the `src/config` folder create a new file `config.json` and then add the following piece of JSON.
+## 🚀 Project Setup
 
- ```
-  {
+Follow these steps to set up the project on your local machine:
+
+### 1️⃣ Clone the Repository
+```sh
+git clone <repository-url>
+cd <repository-folder>
+```
+
+### 2️⃣ Install Dependencies
+Run the following command in the root directory:
+```sh
+npm install
+```
+
+### 3️⃣ Set Up Environment Variables
+Create a `.env` file in the root directory and add the following variable:
+```
+PORT=3000
+```
+
+### 4️⃣ Configure Database
+1. Inside the `src/config` folder, create a new file called `config.json`.
+2. Add the following JSON configuration:
+```json
+{
   "development": {
     "username": "root",
     "password": "<Your DB Password>",
@@ -18,29 +37,52 @@
     "dialect": "mysql"
   }
 }
+```
 
- ```
+### 5️⃣ Create the Database
+Once the database configuration is set up, navigate to the `src` folder and run:
+```sh
+npx sequelize db:create
+```
 
- - Once you have added your db config as listed above, go to the src folder from your terminal and execute `npx sequelize db:create` 
+## 🗄️ Database Design
 
- ## DB Design
+The project follows a relational database model with the following tables:
 
- - Airplane Table
- - Flight
- - Airport
- - City
+### **1️⃣ City Table**
+**Columns:** `id`, `name`, `createdAt`, `updatedAt`
 
- - A flight belongs to an airplane but one airplane can be used in multiple flights.
- - A city has many airports but one airport belongs to a city.
- - One airport can have many flights, but a flight belongs to one airport.
+### **2️⃣ Airport Table**
+**Columns:** `id`, `name`, `address`, `city_id`, `createdAt`, `updatedAt`
 
- ## Tables 
+**Relationships:**
+- A **city** has many airports.
+- An **airport** belongs to a single city (One-to-Many relationship).
 
- ### City -> id, name, createdAt, updatedAt
- ### Airport -> id, name, address, city_id, createdAt, updatedAt
-    Relationship -> City has many airports and Airport belongs to a city (one to many)
+**Sequelize Model Generation Command:**
+```sh
+npx sequelize-cli model:generate --name Airport --attributes name:string,address:string,city_id:integer
+```
 
-    ```
-    npx sequelize-cli model:generate --name Airport --attributes name:string,address:string,city_id:integer
-    ```
+### **3️⃣ Airplane Table**
+
+### **4️⃣ Flight Table**
+
+**Relationships:**
+- A **flight** belongs to an **airplane**, but one airplane can be used in multiple flights.
+- An **airport** can have many flights, but a **flight** belongs to only one airport.
+
+## ✅ Next Steps
+- Run database migrations: `npx sequelize db:migrate`
+- Start the server: `npm start`
+- Use API routes to manage flights and airport services.
+
+---
+
+### 📌 Notes
+- Make sure you have MySQL installed and running before setting up the database.
+- Keep your `.env` file secure and do not commit it to version control.
+- Follow proper naming conventions when defining environment variables (`PORT` instead of `Port`).
+
+📢 Feel free to contribute and improve this service! 🚀
 

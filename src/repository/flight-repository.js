@@ -1,5 +1,5 @@
-const {Flight} = require('../models/index');  // Import the Flight model
-const {Op} = require('sequelize');
+const { Flight } = require('../models/index');  
+const { Op } = require('sequelize');
 
 class FlightRepository {
 
@@ -71,4 +71,4 @@ class FlightRepository {
 }
 
 
-module.exports = FlightRepository;  // Export the FlightRepository class
+module.exports = FlightRepository;  

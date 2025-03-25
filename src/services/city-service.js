@@ -7,20 +7,17 @@ class CityService {
 
     async createCity(data) {
         try {
-            console.log("Received in CityService:", data); // Debugging
-
-            // Extract only the string value
+            console.log("Received in CityService:", data); 
             if (!data || typeof data.name !== "string") {
                 throw new Error("Invalid city name: must be a string");
             }
-
-            // Pass just the string to the repository
             return await this.cityRepository.createCity(data.name);
         } catch (err) {
             console.error("Error creating city:", err);
             throw err;
         }
     }
+
     async createMultipleCities(cities) {
         try {
             const result = await this.cityRepository.createMultipleCities(cities);
@@ -30,6 +27,7 @@ class CityService {
             throw err;
         }
     }
+
     async deleteCity(cityId) {
         try {
             const city = await this.cityRepository.deleteCity(cityId);
@@ -62,7 +60,7 @@ class CityService {
 
     async getAllCities(filter) {
         try {
-            const cities = await this.cityRepository.getAllCities({ name: filter.name }); // Call the repository method
+            const cities = await this.cityRepository.getAllCities({ name: filter.name }); 
             return cities;
         } catch (err) {
             console.error("Error fetching cities:", err);
@@ -71,4 +69,4 @@ class CityService {
     }
 }
 
-module.exports = CityService; // Export the service for use in other parts of the app
+module.exports = CityService; 
